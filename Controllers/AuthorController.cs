@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Fisher.Bookstore.Api.Data;
 using Fisher.Bookstore.Api.Models;
 
 namespace Fisher.Bookstore.Api.Controllers{
@@ -16,14 +17,12 @@ namespace Fisher.Bookstore.Api.Controllers{
             if (this.db.Author.Count() == 0){
                 this.db.Author.Add(new Author {
                     Id = 1,
-                    Fname = "Jon",
-                    Lname = "Snow"
+                    Name = "Snow"
                 });
 
                 this.db.Author.Add(new Author {
                     Id = 2,
-                    Fname = "Douglas",
-                    Lname = "Adams"
+                    Name = "Douglas"
                 });
 
                 this.db.SaveChanges();
@@ -69,8 +68,8 @@ namespace Fisher.Bookstore.Api.Controllers{
                 return NotFound();
             }
 
-            currentAuthor.Fname = newAuthor.Fname;
-            currentAuthor.Lname = newAuthor.Lname;
+            currentAuthor.Name = newAuthor.Name;
+            currentAuthor.Id = newAuthor.Id;
 
             this.db.Author.Update(currentAuthor);
             this.db.SaveChanges();
